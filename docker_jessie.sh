@@ -7,7 +7,7 @@
 # for correct docker support.               #
 #############################################
 readonly PKG_MGR="apt-get"
-readonly PKG_TO_INSTALL="htop iotop iftop vim mtr apt-transport-https curl zsh git"
+readonly PKG_TO_INSTALL="htop rsync iotop iftop vim mtr apt-transport-https curl zsh git"
 readonly GRUB2_DEF_LOC="/etc/default/grub"
 readonly DOCKER_SRC_LST="/etc/apt/sources.list.d/docker.list"
 readonly DOCKER_SERVICE="docker"
