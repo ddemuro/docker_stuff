@@ -1,0 +1,20 @@
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/vda1 during installation
+UUID=81c66628-7564-449a-8b20-0ea5e46e1a89 /               ext4    errors=remount-ro 0       1
+# swap was on /dev/vda5 during installation
+UUID=269c0145-0f8c-4280-877d-b7e364b18798 none            swap    sw              0       0
+/dev/sr0        /media/cdrom0   udf,iso9660 user,noauto     0       0
+/dev/sr1        /media/cdrom1   udf,iso9660 user,noauto     0       0
+
+#NFS Exposed
+10.1.0.2:/mnt/ex2TB  /mnt/mvd02/ex2TB     nfs   timeo=14,intr,bg
+10.1.0.2:/mnt/exUSB  /mnt/mvd02/exUSB     nfs   timeo=14,intr,bg
+10.1.0.2:/mnt/ex3TBUSB  /mnt/mvd02/ex3TBUSB     nfs   timeo=14,intr,bg
+10.1.0.2:/mnt/docker_home  /mnt/mvd02/docker_home     nfs   timeo=14,intr,bg
+10.1.0.3:/mnt/docker_home  /mnt/mvd01/docker_home     nfs   timeo=14,intr,bg 

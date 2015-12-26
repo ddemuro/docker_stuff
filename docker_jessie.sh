@@ -7,7 +7,7 @@
 # for correct docker support.               #
 #############################################
 readonly PKG_MGR="apt-get"
-readonly PKG_TO_INSTALL="htop iotop iftop vim mtr apt-transport-https curl zsh"
+readonly PKG_TO_INSTALL="htop iotop iftop vim mtr apt-transport-https curl zsh git"
 readonly GRUB2_DEF_LOC="/etc/default/grub"
 readonly DOCKER_SRC_LST="/etc/apt/sources.list.d/docker.list"
 readonly DOCKER_SERVICE="docker"
@@ -114,9 +114,26 @@ case $response in
         echo "Adding bind mounts, for docker containers in our workflow."
         wget https://raw.githubusercontent.com/ddemuro/docker_stuff/master/docker_mounts.sh -O /mnt/docker_mounts.sh
         echo "Setting permissions for execution of script"
-        chmod +x /mnt/docker_mounts.sh
+        chmod +x /mnt/docker_mounts.sh        
         ;;
     *)
         echo 'Ohh my zshell installation cancelled.'
+        ;;
+esac
+
+## Adding dockermounts to use remote folders.
+echo "Adding /mnt/docker_mounts.sh to crontab -e with @reboot"
+(crontab -u root -l; echo "@reboot /mnt/docker_mounts" ) | crontab -u root -
+
+# Other scripts from repo
+echo 'Should we grab the fstab from repo?'
+read -r -p "Are you sure? [y/N] " response
+case $response in
+    [yY][eE][sS]|[yY])
+        echo "Replacing fstab."
+        wget https://raw.githubusercontent.com/ddemuro/docker_stuff/master/other-niceness/fstab -O /etc/fstab
+        ;;
+    *)
+        echo 'Fstab was not grabbed from repo.'
         ;;
 esac
