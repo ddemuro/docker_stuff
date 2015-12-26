@@ -105,3 +105,18 @@ case $response in
         echo 'Ohh my zshell installation cancelled.'
         ;;
 esac
+
+# Other scripts from repo
+echo 'Should we install other useful scripts?'
+read -r -p "Are you sure? [y/N] " response
+case $response in
+    [yY][eE][sS]|[yY])
+        echo "Adding bind mounts, for docker containers in our workflow."
+        wget https://raw.githubusercontent.com/ddemuro/docker_stuff/master/docker_mounts.sh -O /mnt/docker_mounts.sh
+        echo "Setting permissions for execution of script"
+        chmod +x /mnt/docker_mounts.sh
+        ;;
+    *)
+        echo 'Ohh my zshell installation cancelled.'
+        ;;
+esac
