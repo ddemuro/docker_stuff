@@ -12,6 +12,10 @@
 # Create base devices (for homes in remote machines)
 # This folders should normally be located in /etc/fstab
 # see included fstab as example.
+
+echo "Mounting anything from fstab..."
+mount -a
+
 echo "Creating remote-homes"
 mkdir -p /mnt/mvd02
 mkdir -p /mnt/mvd02/ex2TB
@@ -29,6 +33,8 @@ mount --bind /srv /mnt/mvd02/docker_home/gitlab
 
 echo "Mounting frontend"
 mkdir -p /mnt/frontend
+mkdir -p /mnt/mvd01/docker_home/frontend
+mkdir -p /mnt/mvd02/docker_home/frontend
 mount --bind /mnt/mvd01/docker_home/frontend /mnt/frontend
 
 echo "Binding music location"
