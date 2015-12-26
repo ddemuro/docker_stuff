@@ -7,7 +7,7 @@
 # for correct docker support.               #
 #############################################
 readonly PKG_MGR="apt-get"
-readonly PKG_TO_INSTALL="htop iotop iftop vim mtr apt-transport-https curl"
+readonly PKG_TO_INSTALL="htop iotop iftop vim mtr apt-transport-https curl zsh"
 readonly GRUB2_DEF_LOC="/etc/default/grub"
 readonly DOCKER_SRC_LST="/etc/apt/sources.list.d/docker.list"
 readonly DOCKER_SERVICE="docker"
@@ -89,5 +89,19 @@ case $response in
         ;;
     *)
         echo 'Shipyard installation cancelled.'
+        ;;
+esac
+
+# Docker installation
+echo 'Should we install Oh-My-ZShell?'
+read -r -p "Are you sure? [y/N] " response
+case $response in
+    [yY][eE][sS]|[yY])
+        sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+        rm /root/.zshrc
+        wget 
+        ;;
+    *)
+        echo 'Ohh my zshell installation cancelled.'
         ;;
 esac
