@@ -75,7 +75,9 @@ case $response in
                 echo 'Installing machine as node...'
                 echo 'Shipyard IP Address to add as node'
                 read shipyard_ip
-                curl -sSL $SHIPYARD_URL | ACTION=node DISCOVERY=$shipyard_ip:8500 bash -s
+                echo 'etcd Port number, normally 4001..., you have to type it!.'
+                read shipyard_port
+                curl -sSL $SHIPYARD_URL | ACTION=node DISCOVERY="etcd://$shipyard_ip:$shipyard_port" bash -s
                 echo "You should now be able to see this machine in Shipyard UI."
                 ;;
             *)
