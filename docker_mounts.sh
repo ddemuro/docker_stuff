@@ -21,6 +21,9 @@ mkdir -p /mnt/mvd02/docker_home
 mkdir -p /mnt/mvd01
 mkdir -p /mnt/mvd01/docker_home
 
+# Sync homes... at times is necessary
+rsync -rtvuz --delete-delay /mnt/mvd02/docker_home/ /mnt/mvd01/docker_home/
+
 echo "Mounting gitlab machine"
 mount --bind /srv /mnt/mvd02/docker_home/gitlab
 
