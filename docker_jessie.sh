@@ -92,14 +92,14 @@ case $response in
         ;;
 esac
 
-# Docker installation
+# Ohh my zsh installation
 echo 'Should we install Oh-My-ZShell?'
 read -r -p "Are you sure? [y/N] " response
 case $response in
     [yY][eE][sS]|[yY])
         sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
         rm /root/.zshrc
-        wget 
+        wget https://raw.githubusercontent.com/ddemuro/docker_stuff/master/other-niceness/zshrc -O /root/.zshrc
         ;;
     *)
         echo 'Ohh my zshell installation cancelled.'
